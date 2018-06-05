@@ -1,0 +1,5 @@
+.idea/
+virtualenv/
+flask_uauth.egg-info/
+temp/
+*.pyc
