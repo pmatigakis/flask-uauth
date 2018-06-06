@@ -1,5 +1,7 @@
 .idea/
 virtualenv/
 flask_uauth.egg-info/
+build/
+dist/
 temp/
 *.pyc
