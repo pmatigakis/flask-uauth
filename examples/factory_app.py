@@ -1,9 +1,8 @@
 from flask import Flask
 
-from flask_uauth.uauth import UAuth
-from flask_uauth.decorators import authentication_required
-from flask_uauth.proxies import current_token
-from flask_uauth.mixins import TokenMixin
+from flask_uauth import (
+    UAuth, authentication_required, current_token, TokenMixin
+)
 
 
 uauth = UAuth()
