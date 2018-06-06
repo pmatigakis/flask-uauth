@@ -36,3 +36,21 @@ class UAuth(object):
 
     def get_token(self, authorization_value):
         return self.authentication_callback(authorization_value)
+
+    def authenticate_request(self, request):
+        authorization_value = None
+
+        if self.header is not None:
+            authorization_value = request.headers.get(self.header)
+
+        if authorization_value is None and self.argument is not None:
+            authorization_value = request.args.get(self.argument)
+
+        if authorization_value is None:
+            return self._handle_missing_token()
+
+        token = self.get_token(authorization_value)
+        if token is None or not token.is_active():
+            return self._handle_unauthorized_user()
+
+        return token
