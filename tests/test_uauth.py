@@ -88,6 +88,32 @@ class UAuthTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"this view is not protected", response.data)
 
+    def test_token_is_not_cached_between_requests(self):
+        response = self.app.test_client().get(
+            "/protected",
+            headers={"Authorization": "active_token"}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"this view is protected", response.data)
+
+        for token in ["unknown_token", "disabled_token"]:
+            response = self.app.test_client().get(
+                "/protected",
+                headers={"Authorization": token}
+            )
+
+            self.assertEqual(response.status_code, 401)
+            self.assertIn(
+                b"The server could not verify that you are authorized "
+                b"to access the URL requested", response.data)
+
+        response = self.app.test_client().get("/protected")
+
+        self.assertEqual(response.status_code, 401)
+        self.assertIn(b"The server could not verify that you are authorized "
+                      b"to access the URL requested", response.data)
+
 
 if __name__ == "__main__":
     main()
