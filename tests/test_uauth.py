@@ -2,16 +2,13 @@ from unittest import TestCase, main
 
 from flask import Flask
 
-from flask_uauth import UAuth, authentication_required
+from flask_uauth import UAuth, authentication_required, TokenMixin
 
 
-class Token(object):
+class Token(TokenMixin):
     def __init__(self, value, active):
         self.value = value
         self.active = active
-
-    def is_active(self):
-        return self.active
 
 
 class UAuthTests(TestCase):
