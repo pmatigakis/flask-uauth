@@ -10,5 +10,7 @@ setup(
     install_requires=[
         "Flask>=0.11.1"
     ],
+    tests_require=["nose"],
+    test_suite="nose.collector",
     zip_safe=True
 )
