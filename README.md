@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/pmatigakis/flask-uauth/branch/master/graph/badge.svg)](https://codecov.io/gh/pmatigakis/flask-uauth)
+[![codecov](https://codecov.io/gh/pmatigakis/flask-uauth/branch/develop/graph/badge.svg)](https://codecov.io/gh/pmatigakis/flask-uauth)
 [![Build Status](https://travis-ci.org/pmatigakis/flask-uauth.svg?branch=develop)](https://travis-ci.org/pmatigakis/flask-uauth)
 
 Flask-uauth is an extension that adds token based authentication on Flask views.
