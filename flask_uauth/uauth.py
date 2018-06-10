@@ -2,6 +2,10 @@ from werkzeug.exceptions import Unauthorized
 from flask import current_app
 
 
+def _reject_unauthorized_request():
+    raise Unauthorized()
+
+
 class UAuth(object):
     """API Authentication extension for Flask"""
 
@@ -14,6 +18,9 @@ class UAuth(object):
         """
         self.app = app
         self.authentication_callback = authentication_callback
+
+        self.handle_unauthorized_user = _reject_unauthorized_request
+        self.handle_missing_token = _reject_unauthorized_request
 
         if app is not None:
             self.init_app(
@@ -47,12 +54,6 @@ class UAuth(object):
 
     def _get_app(self):
         return self.app or current_app
-
-    def _handle_unauthorized_user(self):
-        raise Unauthorized()
-
-    def _handle_missing_token(self):
-        raise Unauthorized()
 
     def _get_authentication_value(self, request):
         authentication_value = None
@@ -103,10 +104,10 @@ class UAuth(object):
         authentication_value = self._get_authentication_value(request)
 
         if authentication_value is None:
-            return self._handle_missing_token()
+            return self.handle_missing_token()
 
         token = self.get_token(authentication_value)
         if token is None or not token.is_active():
-            return self._handle_unauthorized_user()
+            return self.handle_unauthorized_user()
 
         return token
