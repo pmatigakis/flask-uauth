@@ -4,5 +4,7 @@ flask_uauth.egg-info/
 build/
 dist/
 temp/
+cover/
+.coverage
 .eggs/
 *.pyc
