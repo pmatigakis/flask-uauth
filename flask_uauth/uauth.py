@@ -61,7 +61,7 @@ class UAuth(object):
         if self.auth_header is not None:
             authentication_value = request.headers.get(self.auth_header)
 
-        # we could not  get the authentication value from a header. Lets try
+        # we could not get the authentication value from a header. Lets try
         # to get it from an argument
         if authentication_value is None and self.auth_argument is not None:
             authentication_value = request.args.get(self.auth_argument)
