@@ -6,5 +6,6 @@ dist/
 temp/
 cover/
 .coverage
+.tox/
 .eggs/
 *.pyc
