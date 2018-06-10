@@ -54,6 +54,19 @@ class UAuth(object):
     def _handle_missing_token(self):
         raise Unauthorized()
 
+    def _get_authentication_value(self, request):
+        authentication_value = None
+
+        if self.auth_header is not None:
+            authentication_value = request.headers.get(self.auth_header)
+
+        # we could not  get the authentication value from a header. Lets try
+        # to get it from an argument
+        if authentication_value is None and self.auth_argument is not None:
+            authentication_value = request.args.get(self.auth_argument)
+
+        return authentication_value
+
     def init_app(self, app, authentication_callback=None):
         """Initialize the authentication extention
 
@@ -87,18 +100,12 @@ class UAuth(object):
         :rtype: TokenMixin|None
         :return: the token object
         """
-        authorization_value = None
+        authentication_value = self._get_authentication_value(request)
 
-        if self.auth_header is not None:
-            authorization_value = request.headers.get(self.auth_header)
-
-        if authorization_value is None and self.auth_argument is not None:
-            authorization_value = request.args.get(self.auth_argument)
-
-        if authorization_value is None:
+        if authentication_value is None:
             return self._handle_missing_token()
 
-        token = self.get_token(authorization_value)
+        token = self.get_token(authentication_value)
         if token is None or not token.is_active():
             return self._handle_unauthorized_user()
 
