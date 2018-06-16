@@ -8,7 +8,7 @@ def get_long_description():
 
 setup(
     name="flask_uauth",
-    version="0.1.1",
+    version="0.1.2",
     author="Panagiotis Matigakis",
     author_email="pmatigakis@gmail.com",
     description="Simple authentication for Flask REST apis",
