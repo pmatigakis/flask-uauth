@@ -11,7 +11,7 @@ setup(
     version="0.1.1",
     author="Panagiotis Matigakis",
     author_email="pmatigakis@gmail.com",
-    description="Simple authentication to Flask REST apis",
+    description="Simple authentication for Flask REST apis",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
     url="https://github.com/pmatigakis/flask-uauth",
