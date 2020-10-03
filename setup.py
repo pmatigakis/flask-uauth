@@ -17,13 +17,20 @@ setup(
     url="https://github.com/pmatigakis/flask-uauth",
     packages=find_packages(exclude=["tests"]),
     install_requires=[
-        "Flask>=0.11.1"
+        "Flask>=1.0"
     ],
     tests_require=["nose"],
     test_suite="nose.collector",
     zip_safe=True,
     classifiers=(
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
         "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: Implementation :: CPython',
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     )
